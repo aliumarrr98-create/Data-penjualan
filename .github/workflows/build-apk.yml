@@ -1,0 +1,29 @@
+name: Build APK Penjualan
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ambil Bahan
+        uses: actions/checkout@v4
+
+      - name: Siapkan Java
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+
+      - name: Beri Izin Jalan
+        run: chmod +x gradlew
+
+      - name: Bikin APK
+        run: ./gradlew assembleDebug --stacktrace
+
+      - name: Simpan APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: Hasil-APK-Toko
+          path: app/build/outputs/apk/debug/app-debug.apk
