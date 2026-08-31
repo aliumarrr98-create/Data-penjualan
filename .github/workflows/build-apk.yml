@@ -16,13 +16,13 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
-      - name: Beri Izin Jalan
+      - name: Beri Izin Gradle
         run: chmod +x gradlew
 
-      - name: Bikin APK
+      - name: Cetak APK
         run: ./gradlew assembleDebug --stacktrace
 
-      - name: Simpan APK
+      - name: Simpan Hasil APK
         uses: actions/upload-artifact@v4
         with:
           name: Hasil-APK-Toko
